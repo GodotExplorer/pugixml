@@ -50,7 +50,7 @@ Vector<Variant> XMLNode::get_elements(const String &name) const {
     Vector<Variant>  array;
     xml_object_range<xml_named_node_iterator> range = m_pNode->children(name.utf8());
     for(xml_named_node_iterator it = range.begin(); it != range.end(); ++it )
-        array.push_back(create(*it).ptr());
+        array.push_back(create(*it));
     return array;
 }
 
@@ -58,7 +58,7 @@ Vector<Variant> XMLNode::get_attributes() const {
     Vector<Variant>  array;
     xml_object_range<xml_attribute_iterator> range = m_pNode->attributes();
     for(xml_attribute_iterator it = range.begin(); it != range.end(); ++it )
-        array.push_back(XMLAttribute::create(*it).ptr());
+        array.push_back(XMLAttribute::create(*it));
     return array;
 }
 
@@ -145,9 +145,9 @@ void XMLNode::_bind_methods() {
 
 void XMLDocument::_bind_methods() {
 	ClassDB::bind_method(D_METHOD("load_string", "xml_content"), &XMLDocument::load_string);
-	ClassDB::bind_method(D_METHOD("save_string"), &XMLDocument::save_string, DEFVAL("\t"));
+	ClassDB::bind_method(D_METHOD("save_string", "indent"), &XMLDocument::save_string, DEFVAL("\t"));
 	ClassDB::bind_method(D_METHOD("load_file", "path"), &XMLDocument::load_file);
-	ClassDB::bind_method(D_METHOD("save_file"), &XMLDocument::save_file, DEFVAL("\t"));
+	ClassDB::bind_method(D_METHOD("save_file", "path", "indent"), &XMLDocument::save_file, DEFVAL("\t"));
 }
 
 XMLDocument::XMLDocument(): XMLNode() {
