@@ -28,17 +28,14 @@
 /*************************************************************************/
 
 #include "register_types.h"
-#include "class_db.h"
 #include "pugixml_exporter.h"
 
 void register_pugixml_types() {
-//    gdexplorer::XMLDocument doc;
-//    doc.load_file("/home/geequlim/Desktop/blueSheet.xml");
-//    doc.save_file("/home/geequlim/Desktop/save.xml");
-    ClassDB::register_class<XMLNode>();
-    ClassDB::register_class<XMLDocument>();
-    ClassDB::register_class<XMLAttribute>();
-    ClassDB::register_class<XMLText>();
+
+    ObjectTypeDB::register_type<XMLNode>();
+    ObjectTypeDB::register_type<XMLDocument>();
+    ObjectTypeDB::register_type<XMLAttribute>();
+    ObjectTypeDB::register_type<XMLText>();
 }
 
 void unregister_pugixml_types() {

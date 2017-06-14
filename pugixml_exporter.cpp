@@ -1,4 +1,5 @@
 #include "pugixml_exporter.h"
+#include <core/globals.h>
 #include <sstream>
 
 using namespace  pugi;
@@ -63,71 +64,71 @@ Vector<Variant> XMLNode::get_attributes() const {
 }
 
 void XMLNode::_bind_methods() {
-	ClassDB::bind_method(D_METHOD("empty"), &XMLNode::empty);
-	ClassDB::bind_method(D_METHOD("type"), &XMLNode::type);
-	ClassDB::bind_method(D_METHOD("get_name"), &XMLNode::name);
-	ClassDB::bind_method(D_METHOD("get_value"), &XMLNode::value);
+	ObjectTypeDB::bind_method(_MD("empty"), &XMLNode::empty);
+	ObjectTypeDB::bind_method(_MD("type"), &XMLNode::type);
+	ObjectTypeDB::bind_method(_MD("get_name"), &XMLNode::name);
+	ObjectTypeDB::bind_method(_MD("get_value"), &XMLNode::value);
 
-	ClassDB::bind_method(D_METHOD("first_attribute:XMLAttribute"), &XMLNode::first_attribute);
-	ClassDB::bind_method(D_METHOD("last_attribute:XMLAttribute"), &XMLNode::last_attribute);
+	ObjectTypeDB::bind_method(_MD("first_attribute:XMLAttribute"), &XMLNode::first_attribute);
+	ObjectTypeDB::bind_method(_MD("last_attribute:XMLAttribute"), &XMLNode::last_attribute);
 
-	ClassDB::bind_method(D_METHOD("first_child:XMLNode"), &XMLNode::first_child);
-	ClassDB::bind_method(D_METHOD("last_child:XMLNode"), &XMLNode::last_child);
+	ObjectTypeDB::bind_method(_MD("first_child:XMLNode"), &XMLNode::first_child);
+	ObjectTypeDB::bind_method(_MD("last_child:XMLNode"), &XMLNode::last_child);
 
-	ClassDB::bind_method(D_METHOD("next_sibling:XMLNode"), &XMLNode::next_sibling);
-	ClassDB::bind_method(D_METHOD("previous_sibling:XMLNode"), &XMLNode::previous_sibling);
+	ObjectTypeDB::bind_method(_MD("next_sibling:XMLNode"), &XMLNode::next_sibling);
+	ObjectTypeDB::bind_method(_MD("previous_sibling:XMLNode"), &XMLNode::previous_sibling);
 
-	ClassDB::bind_method(D_METHOD("parent:XMLNode"), &XMLNode::parent);
-	ClassDB::bind_method(D_METHOD("root:XMLNode"), &XMLNode::root);
-	ClassDB::bind_method(D_METHOD("text:XMLText"), &XMLNode::text);
+	ObjectTypeDB::bind_method(_MD("parent:XMLNode"), &XMLNode::parent);
+	ObjectTypeDB::bind_method(_MD("root:XMLNode"), &XMLNode::root);
+	ObjectTypeDB::bind_method(_MD("text:XMLText"), &XMLNode::text);
 
-	ClassDB::bind_method(D_METHOD("child:XMLNode", "name"), &XMLNode::child);
-	ClassDB::bind_method(D_METHOD("attribute:XMLAttribute", "name"), &XMLNode::attribute);
-	ClassDB::bind_method(D_METHOD("next_element:XMLNode", "name"), &XMLNode::next_element);
-	ClassDB::bind_method(D_METHOD("previous_element:XMLNode", "name"), &XMLNode::previous_element);
+	ObjectTypeDB::bind_method(_MD("child:XMLNode", "name"), &XMLNode::child);
+	ObjectTypeDB::bind_method(_MD("attribute:XMLAttribute", "name"), &XMLNode::attribute);
+	ObjectTypeDB::bind_method(_MD("next_element:XMLNode", "name"), &XMLNode::next_element);
+	ObjectTypeDB::bind_method(_MD("previous_element:XMLNode", "name"), &XMLNode::previous_element);
 
-	ClassDB::bind_method(D_METHOD("child_value"), &XMLNode::child_value);
-	ClassDB::bind_method(D_METHOD("element_value", "name"), &XMLNode::element_value);
+	ObjectTypeDB::bind_method(_MD("child_value"), &XMLNode::child_value);
+	ObjectTypeDB::bind_method(_MD("element_value", "name"), &XMLNode::element_value);
 
-	ClassDB::bind_method(D_METHOD("set_name", "name"), &XMLNode::set_name);
-	ClassDB::bind_method(D_METHOD("set_value", "value"), &XMLNode::set_value);
+	ObjectTypeDB::bind_method(_MD("set_name", "name"), &XMLNode::set_name);
+	ObjectTypeDB::bind_method(_MD("set_value", "value"), &XMLNode::set_value);
 
-	ClassDB::bind_method(D_METHOD("append_attribute:XMLAttribute", "name"), &XMLNode::append_attribute);
-	ClassDB::bind_method(D_METHOD("prepend_attribute:XMLAttribute", "name"), &XMLNode::prepend_attribute);
-	ClassDB::bind_method(D_METHOD("insert_attribute_after:XMLAttribute", "name", "attr:XMLAttribute"), &XMLNode::insert_attribute_after);
-	ClassDB::bind_method(D_METHOD("insert_attribute_before:XMLAttribute", "name", "attr:XMLAttribute"), &XMLNode::insert_attribute_before);
+	ObjectTypeDB::bind_method(_MD("append_attribute:XMLAttribute", "name"), &XMLNode::append_attribute);
+	ObjectTypeDB::bind_method(_MD("prepend_attribute:XMLAttribute", "name"), &XMLNode::prepend_attribute);
+	ObjectTypeDB::bind_method(_MD("insert_attribute_after:XMLAttribute", "name", "attr:XMLAttribute"), &XMLNode::insert_attribute_after);
+	ObjectTypeDB::bind_method(_MD("insert_attribute_before:XMLAttribute", "name", "attr:XMLAttribute"), &XMLNode::insert_attribute_before);
 
-	ClassDB::bind_method(D_METHOD("append_child:XMLNode", "node_type"), &XMLNode::append_child);
-	ClassDB::bind_method(D_METHOD("prepend_child:XMLNode", "node_type"), &XMLNode::prepend_child);
-	ClassDB::bind_method(D_METHOD("insert_child_after:XMLNode", "node_type", "node:XMLNode"), &XMLNode::insert_child_after);
-	ClassDB::bind_method(D_METHOD("insert_child_before:XMLNode", "node_type", "node:XMLNode"), &XMLNode::insert_child_before);
+	ObjectTypeDB::bind_method(_MD("append_child:XMLNode", "node_type"), &XMLNode::append_child);
+	ObjectTypeDB::bind_method(_MD("prepend_child:XMLNode", "node_type"), &XMLNode::prepend_child);
+	ObjectTypeDB::bind_method(_MD("insert_child_after:XMLNode", "node_type", "node:XMLNode"), &XMLNode::insert_child_after);
+	ObjectTypeDB::bind_method(_MD("insert_child_before:XMLNode", "node_type", "node:XMLNode"), &XMLNode::insert_child_before);
 
-	ClassDB::bind_method(D_METHOD("append_element:XMLNode", "name"), &XMLNode::append_element);
-	ClassDB::bind_method(D_METHOD("prepend_element:XMLNode", "name"), &XMLNode::prepend_element);
-	ClassDB::bind_method(D_METHOD("insert_element_after:XMLNode", "name", "node:XMLNode"), &XMLNode::insert_element_after);
-	ClassDB::bind_method(D_METHOD("insert_element_before:XMLNode", "name", "node:XMLNode"), &XMLNode::insert_element_before);
+	ObjectTypeDB::bind_method(_MD("append_element:XMLNode", "name"), &XMLNode::append_element);
+	ObjectTypeDB::bind_method(_MD("prepend_element:XMLNode", "name"), &XMLNode::prepend_element);
+	ObjectTypeDB::bind_method(_MD("insert_element_after:XMLNode", "name", "node:XMLNode"), &XMLNode::insert_element_after);
+	ObjectTypeDB::bind_method(_MD("insert_element_before:XMLNode", "name", "node:XMLNode"), &XMLNode::insert_element_before);
 
-	ClassDB::bind_method(D_METHOD("append_copy:XMLNode", "proto:XMLNode"), &XMLNode::append_copy);
-	ClassDB::bind_method(D_METHOD("prepend_element:XMLNode", "proto:XMLNode"), &XMLNode::prepend_copy);
-	ClassDB::bind_method(D_METHOD("insert_copy_after:XMLNode", "proto:XMLNode", "node:XMLNode"), &XMLNode::insert_copy_after);
-	ClassDB::bind_method(D_METHOD("insert_copy_before:XMLNode", "proto:XMLNode", "node:XMLNode"), &XMLNode::insert_copy_before);
+	ObjectTypeDB::bind_method(_MD("append_copy:XMLNode", "proto:XMLNode"), &XMLNode::append_copy);
+	ObjectTypeDB::bind_method(_MD("prepend_element:XMLNode", "proto:XMLNode"), &XMLNode::prepend_copy);
+	ObjectTypeDB::bind_method(_MD("insert_copy_after:XMLNode", "proto:XMLNode", "node:XMLNode"), &XMLNode::insert_copy_after);
+	ObjectTypeDB::bind_method(_MD("insert_copy_before:XMLNode", "proto:XMLNode", "node:XMLNode"), &XMLNode::insert_copy_before);
 
-	ClassDB::bind_method(D_METHOD("append_move:XMLNode", "proto:XMLNode"), &XMLNode::append_move);
-	ClassDB::bind_method(D_METHOD("prepend_move:XMLNode", "proto:XMLNode"), &XMLNode::prepend_move);
-	ClassDB::bind_method(D_METHOD("insert_move_after:XMLNode", "proto:XMLNode", "node:XMLNode"), &XMLNode::insert_move_after);
-	ClassDB::bind_method(D_METHOD("insert_move_before:XMLNode", "proto:XMLNode", "node:XMLNode"), &XMLNode::insert_move_before);
+	ObjectTypeDB::bind_method(_MD("append_move:XMLNode", "proto:XMLNode"), &XMLNode::append_move);
+	ObjectTypeDB::bind_method(_MD("prepend_move:XMLNode", "proto:XMLNode"), &XMLNode::prepend_move);
+	ObjectTypeDB::bind_method(_MD("insert_move_after:XMLNode", "proto:XMLNode", "node:XMLNode"), &XMLNode::insert_move_after);
+	ObjectTypeDB::bind_method(_MD("insert_move_before:XMLNode", "proto:XMLNode", "node:XMLNode"), &XMLNode::insert_move_before);
 
-	ClassDB::bind_method(D_METHOD("remove_attribute", "attr:XMLAttribute"), &XMLNode::remove_attribute);
-	ClassDB::bind_method(D_METHOD("remove_attribute_by_name", "name"), &XMLNode::remove_attribute_by_name);
+	ObjectTypeDB::bind_method(_MD("remove_attribute", "attr:XMLAttribute"), &XMLNode::remove_attribute);
+	ObjectTypeDB::bind_method(_MD("remove_attribute_by_name", "name"), &XMLNode::remove_attribute_by_name);
 
-	ClassDB::bind_method(D_METHOD("remove_child", "attr:XMLNode"), &XMLNode::remove_child);
-	ClassDB::bind_method(D_METHOD("remove_child_by_name", "name"), &XMLNode::remove_child_by_name);
+	ObjectTypeDB::bind_method(_MD("remove_child", "attr:XMLNode"), &XMLNode::remove_child);
+	ObjectTypeDB::bind_method(_MD("remove_child_by_name", "name"), &XMLNode::remove_child_by_name);
 
-	ClassDB::bind_method(D_METHOD("first_element_by_path:XMLNode", "path"), &XMLNode::first_element_by_path);
-	ClassDB::bind_method(D_METHOD("find_child_by_attribute:XMLNode", "attr_name", "attr_value", "ele_name"), &XMLNode::find_child_by_attribute);
-	ClassDB::bind_method(D_METHOD("get_children"), &XMLNode::get_children);
-	ClassDB::bind_method(D_METHOD("get_elements", "name"), &XMLNode::get_elements);
-	ClassDB::bind_method(D_METHOD("get_attributes"), &XMLNode::get_attributes);
+	ObjectTypeDB::bind_method(_MD("first_element_by_path:XMLNode", "path"), &XMLNode::first_element_by_path);
+	ObjectTypeDB::bind_method(_MD("find_child_by_attribute:XMLNode", "attr_name", "attr_value", "ele_name"), &XMLNode::find_child_by_attribute);
+	ObjectTypeDB::bind_method(_MD("get_children"), &XMLNode::get_children);
+	ObjectTypeDB::bind_method(_MD("get_elements", "name"), &XMLNode::get_elements);
+	ObjectTypeDB::bind_method(_MD("get_attributes"), &XMLNode::get_attributes);
 
 	ADD_PROPERTY(PropertyInfo(Variant::STRING, "name"), "get_name", "set_name");
 	ADD_PROPERTY(PropertyInfo(Variant::STRING, "value"), "get_value", "set_value");
@@ -144,10 +145,10 @@ void XMLNode::_bind_methods() {
 }
 
 void XMLDocument::_bind_methods() {
-	ClassDB::bind_method(D_METHOD("load_string", "xml_content"), &XMLDocument::load_string);
-	ClassDB::bind_method(D_METHOD("save_string", "indent"), &XMLDocument::save_string, DEFVAL("\t"));
-	ClassDB::bind_method(D_METHOD("load_file", "path"), &XMLDocument::load_file);
-	ClassDB::bind_method(D_METHOD("save_file", "path", "indent"), &XMLDocument::save_file, DEFVAL("\t"));
+	ObjectTypeDB::bind_method(_MD("load_string", "xml_content"), &XMLDocument::load_string);
+	ObjectTypeDB::bind_method(_MD("save_string", "indent"), &XMLDocument::save_string, DEFVAL("\t"));
+	ObjectTypeDB::bind_method(_MD("load_file", "path"), &XMLDocument::load_file);
+	ObjectTypeDB::bind_method(_MD("save_file", "path", "indent"), &XMLDocument::save_file, DEFVAL("\t"));
 }
 
 XMLDocument::XMLDocument(): XMLNode() {
@@ -171,7 +172,7 @@ Error XMLDocument::load_string(const String &contents) {
 }
 
 Error XMLDocument::load_file(const String &path) {
-	String gpath = GlobalConfig::get_singleton()->globalize_path(path);
+	String gpath = Globals::get_singleton()->globalize_path(path);
 	Error err = OK;
 	FileAccess *file = file->open(gpath, FileAccess::READ, &err);
 	if (err == OK) {
@@ -200,7 +201,7 @@ String XMLDocument::save_string(const String &indent) {
 Error XMLDocument::save_file(const String &path, const String &indent) {
 	std::stringstream ss;
 	Error err = FAILED;
-	if (FileAccess *file = FileAccess::open(GlobalConfig::get_singleton()->globalize_path(path), FileAccess::WRITE)) {
+	if (FileAccess *file = FileAccess::open(Globals::get_singleton()->globalize_path(path), FileAccess::WRITE)) {
 		if (file->get_error() == OK) {
 			String s = save_string(indent);
 			file->store_string(s);
@@ -213,14 +214,14 @@ Error XMLDocument::save_file(const String &path, const String &indent) {
 }
 
 void XMLAttribute::_bind_methods() {
-	ClassDB::bind_method(D_METHOD("empty"), &XMLAttribute::empty);
+	ObjectTypeDB::bind_method(_MD("empty"), &XMLAttribute::empty);
 
-	ClassDB::bind_method(D_METHOD("get_name"), &XMLAttribute::name);
-	ClassDB::bind_method(D_METHOD("set_name", "name"), &XMLAttribute::set_name);
+	ObjectTypeDB::bind_method(_MD("get_name"), &XMLAttribute::name);
+	ObjectTypeDB::bind_method(_MD("set_name", "name"), &XMLAttribute::set_name);
 	ADD_PROPERTY(PropertyInfo(Variant::STRING, "name"), "get_name", "set_name");
 
-	ClassDB::bind_method(D_METHOD("get_value"), &XMLAttribute::value);
-	ClassDB::bind_method(D_METHOD("set_value", "value"), &XMLAttribute::set_value);
+	ObjectTypeDB::bind_method(_MD("get_value"), &XMLAttribute::value);
+	ObjectTypeDB::bind_method(_MD("set_value", "value"), &XMLAttribute::set_value);
 	ADD_PROPERTY(PropertyInfo(Variant::STRING, "value"), "get_value", "set_value");
 
 }
@@ -271,9 +272,9 @@ Ref<XMLNode> XMLText::data() {
 }
 
 void XMLText::_bind_methods() {
-	ClassDB::bind_method(D_METHOD("get_value"), &XMLText::get_value);
-	ClassDB::bind_method(D_METHOD("set_value", "text"), &XMLText::set_value);
-	ClassDB::bind_method(D_METHOD("data:XMLNode", "data"), &XMLText::data);
+	ObjectTypeDB::bind_method(_MD("get_value"), &XMLText::get_value);
+	ObjectTypeDB::bind_method(_MD("set_value", "text"), &XMLText::set_value);
+	ObjectTypeDB::bind_method(_MD("data:XMLNode", "data"), &XMLText::data);
 	ADD_PROPERTY(PropertyInfo(Variant::STRING, "value"), "get_value", "set_value");
 }
 

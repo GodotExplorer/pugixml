@@ -1,7 +1,6 @@
 #ifndef __GODOT_EXPLORER_PUGIXML_EXPORTER_H__
 #define __GODOT_EXPLORER_PUGIXML_EXPORTER_H__
 
-#include <core/global_config.h>
 #include <core/os/file_access.h>
 #include <core/reference.h>
 
@@ -11,7 +10,7 @@
 String str_p2g(const char* str);
 
 class XMLAttribute : public Reference {
-	GDCLASS(XMLAttribute, Reference);
+	OBJ_TYPE(XMLAttribute, Reference);
 	friend class XMLNode;
 
 protected:
@@ -33,7 +32,7 @@ public:
 
 class XMLNode;
 class XMLText : public Reference {
-	GDCLASS(XMLText, Reference);
+	OBJ_TYPE(XMLText, Reference);
 	friend class XMLNode;
 
 protected:
@@ -53,7 +52,7 @@ public:
 };
 
 class XMLNode : public Reference {
-	GDCLASS(XMLNode, Reference);
+	OBJ_TYPE(XMLNode, Reference);
 
 protected:
 	static void _bind_methods();
@@ -151,7 +150,7 @@ public:
 };
 
 class XMLDocument : public XMLNode {
-	GDCLASS(XMLDocument, XMLNode);
+	OBJ_TYPE(XMLDocument, XMLNode);
 
 protected:
 	static void _bind_methods();
