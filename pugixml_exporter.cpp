@@ -66,6 +66,10 @@ Vector<Variant> XMLNode::get_attributes() const {
 void XMLNode::_bind_methods() {
 	ObjectTypeDB::bind_method(_MD("empty"), &XMLNode::empty);
 	ObjectTypeDB::bind_method(_MD("type"), &XMLNode::type);
+
+	ObjectTypeDB::bind_method(_MD("set_name", "name"), &XMLNode::set_name);
+	ObjectTypeDB::bind_method(_MD("set_value", "value"), &XMLNode::set_value);
+
 	ObjectTypeDB::bind_method(_MD("get_name"), &XMLNode::name);
 	ObjectTypeDB::bind_method(_MD("get_value"), &XMLNode::value);
 
@@ -90,9 +94,6 @@ void XMLNode::_bind_methods() {
 	ObjectTypeDB::bind_method(_MD("child_value"), &XMLNode::child_value);
 	ObjectTypeDB::bind_method(_MD("element_value", "name"), &XMLNode::element_value);
 
-	ObjectTypeDB::bind_method(_MD("set_name", "name"), &XMLNode::set_name);
-	ObjectTypeDB::bind_method(_MD("set_value", "value"), &XMLNode::set_value);
-
 	ObjectTypeDB::bind_method(_MD("append_attribute:XMLAttribute", "name"), &XMLNode::append_attribute);
 	ObjectTypeDB::bind_method(_MD("prepend_attribute:XMLAttribute", "name"), &XMLNode::prepend_attribute);
 	ObjectTypeDB::bind_method(_MD("insert_attribute_after:XMLAttribute", "name", "attr:XMLAttribute"), &XMLNode::insert_attribute_after);
@@ -109,7 +110,7 @@ void XMLNode::_bind_methods() {
 	ObjectTypeDB::bind_method(_MD("insert_element_before:XMLNode", "name", "node:XMLNode"), &XMLNode::insert_element_before);
 
 	ObjectTypeDB::bind_method(_MD("append_copy:XMLNode", "proto:XMLNode"), &XMLNode::append_copy);
-	ObjectTypeDB::bind_method(_MD("prepend_element:XMLNode", "proto:XMLNode"), &XMLNode::prepend_copy);
+	ObjectTypeDB::bind_method(_MD("prepend_copy:XMLNode", "proto:XMLNode"), &XMLNode::prepend_copy);
 	ObjectTypeDB::bind_method(_MD("insert_copy_after:XMLNode", "proto:XMLNode", "node:XMLNode"), &XMLNode::insert_copy_after);
 	ObjectTypeDB::bind_method(_MD("insert_copy_before:XMLNode", "proto:XMLNode", "node:XMLNode"), &XMLNode::insert_copy_before);
 
@@ -130,8 +131,8 @@ void XMLNode::_bind_methods() {
 	ObjectTypeDB::bind_method(_MD("get_elements", "name"), &XMLNode::get_elements);
 	ObjectTypeDB::bind_method(_MD("get_attributes"), &XMLNode::get_attributes);
 
-	ADD_PROPERTY(PropertyInfo(Variant::STRING, "name"), "get_name", "set_name");
-	ADD_PROPERTY(PropertyInfo(Variant::STRING, "value"), "get_value", "set_value");
+	ADD_PROPERTY(PropertyInfo(Variant::STRING, "name"), "set_name", "get_name");
+	ADD_PROPERTY(PropertyInfo(Variant::STRING, "value"), "set_value", "get_value");
 
 	BIND_CONSTANT(NODE_NULL);
 	BIND_CONSTANT(NODE_DOCUMENT);
@@ -191,6 +192,7 @@ Error XMLDocument::load_file(const String &path) {
 }
 
 String XMLDocument::save_string(const String &indent) {
+
 	std::stringstream ss;
 	static_cast<pugi::xml_document*>(m_pNode)->save(ss, indent.utf8(), format_default, encoding_utf8);
 	String s;
@@ -199,7 +201,7 @@ String XMLDocument::save_string(const String &indent) {
 }
 
 Error XMLDocument::save_file(const String &path, const String &indent) {
-	std::stringstream ss;
+
 	Error err = FAILED;
 	if (FileAccess *file = FileAccess::open(Globals::get_singleton()->globalize_path(path), FileAccess::WRITE)) {
 		if (file->get_error() == OK) {
@@ -218,11 +220,11 @@ void XMLAttribute::_bind_methods() {
 
 	ObjectTypeDB::bind_method(_MD("get_name"), &XMLAttribute::name);
 	ObjectTypeDB::bind_method(_MD("set_name", "name"), &XMLAttribute::set_name);
-	ADD_PROPERTY(PropertyInfo(Variant::STRING, "name"), "get_name", "set_name");
+	ADD_PROPERTY(PropertyInfo(Variant::STRING, "name"), "set_name", "get_name");
 
 	ObjectTypeDB::bind_method(_MD("get_value"), &XMLAttribute::value);
 	ObjectTypeDB::bind_method(_MD("set_value", "value"), &XMLAttribute::set_value);
-	ADD_PROPERTY(PropertyInfo(Variant::STRING, "value"), "get_value", "set_value");
+	ADD_PROPERTY(PropertyInfo(Variant::STRING, "value"), "set_value", "get_value");
 
 }
 
@@ -275,7 +277,7 @@ void XMLText::_bind_methods() {
 	ObjectTypeDB::bind_method(_MD("get_value"), &XMLText::get_value);
 	ObjectTypeDB::bind_method(_MD("set_value", "text"), &XMLText::set_value);
 	ObjectTypeDB::bind_method(_MD("data:XMLNode", "data"), &XMLText::data);
-	ADD_PROPERTY(PropertyInfo(Variant::STRING, "value"), "get_value", "set_value");
+	ADD_PROPERTY(PropertyInfo(Variant::STRING, "value"), "set_value", "get_value");
 }
 
 void XMLText::_set_native_text(const xml_text &native_text) {
