@@ -1,7 +1,6 @@
 #ifndef __GODOT_EXPLORER_PUGIXML_EXPORTER_H__
 #define __GODOT_EXPLORER_PUGIXML_EXPORTER_H__
 
-#include <core/global_config.h>
 #include <core/os/file_access.h>
 #include <core/reference.h>
 

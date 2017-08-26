@@ -32,9 +32,6 @@
 #include "pugixml_exporter.h"
 
 void register_pugixml_types() {
-//    gdexplorer::XMLDocument doc;
-//    doc.load_file("/home/geequlim/Desktop/blueSheet.xml");
-//    doc.save_file("/home/geequlim/Desktop/save.xml");
     ClassDB::register_class<XMLNode>();
     ClassDB::register_class<XMLDocument>();
     ClassDB::register_class<XMLAttribute>();
