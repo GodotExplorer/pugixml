@@ -32,12 +32,11 @@
 #include "pugixml_exporter.h"
 
 void register_pugixml_types() {
-    ClassDB::register_class<XMLNode>();
-    ClassDB::register_class<XMLDocument>();
-    ClassDB::register_class<XMLAttribute>();
-    ClassDB::register_class<XMLText>();
+	ClassDB::register_class<XMLNode>();
+	ClassDB::register_class<XMLDocument>();
+	ClassDB::register_class<XMLAttribute>();
+	ClassDB::register_class<XMLText>();
 }
 
 void unregister_pugixml_types() {
-
 }
